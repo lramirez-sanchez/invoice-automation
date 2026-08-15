@@ -23,5 +23,12 @@ class Invoice(Base):
     file_name: Mapped[str | None] = mapped_column(String(255), nullable=True)
     file_path: Mapped[str | None] = mapped_column(String(500), nullable=True)
     status: Mapped[str] = mapped_column(String(20), default="PENDING")
-    created_at: Mapped[datetime] = mapped_column(DateTime)
-    updated_at: Mapped[datetime] = mapped_column(DateTime)
+    created_at: Mapped[datetime] = mapped_column(
+    DateTime,
+        default=datetime.utcnow,
+    )
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow,
+    )
